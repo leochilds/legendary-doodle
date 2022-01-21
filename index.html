@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+    <style>
+        body {
+            padding-top: 50px;
+            background: #F7F7F7;
+            -webkit-perspective: 800px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #coin {
+            position: relative;
+            margin: 0 auto;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+        }
+
+        #coin div {
+            width: 100%;
+            height: 100%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            -webkit-box-shadow: inset 0 0 45px rgba(255, 255, 255, .3), 0 12px 20px -10px rgba(0, 0, 0, .4);
+            -moz-box-shadow: inset 0 0 45px rgba(255, 255, 255, .3), 0 12px 20px -10px rgba(0, 0, 0, .4);
+            box-shadow: inset 0 0 45px rgba(255, 255, 255, .3), 0 12px 20px -10px rgba(0, 0, 0, .4);
+        }
+
+        .side-a {
+            background: url("https://ca.slack-edge.com/TF9P61T0C-U02QL36KL6Q-110b8f3ddbf5-512");
+            background-size: 100px 100px;
+        }
+
+        .side-b {
+            background: url("https://ca.slack-edge.com/TF9P61T0C-U02QL36GRN0-9b8d2b0d65c2-512");
+            background-size: 100px 100px;
+        }
+
+        #coin {
+            transition: -webkit-transform 1s ease-in;
+            -webkit-transform-style: preserve-3d;
+        }
+
+        #coin div {
+            position: absolute;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .side-a {
+            z-index: 100;
+        }
+
+        .side-b {
+            -webkit-transform: rotateY(-180deg);
+
+        }
+
+        #coin.heads {
+            -webkit-animation: flipHeads 3s ease-out forwards;
+            -moz-animation: flipHeads 3s ease-out forwards;
+            -o-animation: flipHeads 3s ease-out forwards;
+            animation: flipHeads 3s ease-out forwards;
+        }
+
+        #coin.tails {
+            -webkit-animation: flipTails 3s ease-out forwards;
+            -moz-animation: flipTails 3s ease-out forwards;
+            -o-animation: flipTails 3s ease-out forwards;
+            animation: flipTails 3s ease-out forwards;
+        }
+
+        @-webkit-keyframes flipHeads {
+            from {
+                -webkit-transform: rotateY(0);
+                -moz-transform: rotateY(0);
+                transform: rotateY(0);
+            }
+
+            to {
+                -webkit-transform: rotateY(1800deg);
+                -moz-transform: rotateY(1800deg);
+                transform: rotateY(1800deg);
+            }
+        }
+
+        @-webkit-keyframes flipTails {
+            from {
+                -webkit-transform: rotateY(0);
+                -moz-transform: rotateY(0);
+                transform: rotateY(0);
+            }
+
+            to {
+                -webkit-transform: rotateY(1980deg);
+                -moz-transform: rotateY(1980deg);
+                transform: rotateY(1980deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="coin">
+        <div class="side-a"></div>
+        <div class="side-b"></div>
+    </div>
+    <h1>Click on coin to flip</h1>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+
+            $('#coin').on('click', function () {
+                var flipResult = Math.random();
+                $('#coin').removeClass();
+                setTimeout(function () {
+                    if (flipResult <= 0.5) {
+                        $('#coin').addClass('heads');
+                        console.log('it is head');
+                    }
+                    else {
+                        $('#coin').addClass('tails');
+                        console.log('it is tails');
+                    }
+                }, 100);
+            });
+        });
+
+    </script>
+</body>
+
+</html>
